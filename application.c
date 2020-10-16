@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int * CreateArray(int *, int *);
 void FillArray (int *, int, int);
 void ShowArray (int *, int, int);
 
@@ -8,16 +9,22 @@ int main()
 {
     int row, column;
     int *array = NULL;
-    printf("Enter amount of rows: ");
-    scanf("%d", &row);
-    printf("Enter amount of columns: ");
-    scanf("%d", &column);
-    array = (int*)calloc(row*column, sizeof(int));
     
+    array = CreateArray(&row, &column);
     FillArray(array, row, column);
     ShowArray(array, row, column);
 
     return 0;
+}
+
+int * CreateArray(int *height, int *width){
+    printf("Enter amount of rows: ");
+    scanf("%d", height);
+    printf("Enter amount of columns: ");
+    scanf("%d", width);
+    int *arr = (int*)calloc((*height)*(*width), sizeof(int));
+    
+    return arr;
 }
 
 void FillArray (int *arr, int height, int width){
