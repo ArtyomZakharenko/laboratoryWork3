@@ -4,6 +4,7 @@
 int * CreateArray(int *, int *);
 void FillArray (int *, int, int);
 void ShowArray (int *, int, int);
+void SortRows (int *, int, int);
 
 int main()
 {
@@ -12,6 +13,8 @@ int main()
     
     array = CreateArray(&row, &column);
     FillArray(array, row, column);
+    ShowArray(array, row, column);
+    SortRows(array, row, column);
     ShowArray(array, row, column);
 
     return 0;
@@ -53,4 +56,21 @@ void ShowArray (int *arr, int height, int width){
         printf("\n");
         }
     }
+}
+
+void SortRows(int *arr, int height, int width){
+    int i, j, k, temp;
+    for (i = 0; i < height*width; i += width){
+        for(j = 0; j < width-1; j++){
+            for(k = 1; k < width; k++){
+                
+                if( *(arr+i+j) > 0 && *(arr+i+j) < *(arr+i+k)){
+                    temp = *(arr+i+k);
+                    *(arr+i+k) = *(arr+i+j);
+                    *(arr+i+j) = temp;
+                }
+            }
+        }
+    }
+    printf("\n");
 }
